@@ -1,6 +1,7 @@
 "use client";
 
-import { OrbitControls, Stats } from "@react-three/drei";
+import CameraControls from "@/components/custom/camera-controls";
+import { Stats } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
 export default function Home() {
@@ -17,7 +18,7 @@ export default function Home() {
         <gridHelper args={[20, 20]} />
         <axesHelper args={[5]} />
 
-        <OrbitControls />
+        <CameraControls />
       </Canvas>
       <Stats showPanel={0} className=""/>
     </div>

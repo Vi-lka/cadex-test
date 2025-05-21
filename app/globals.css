@@ -119,4 +119,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .main-canvas canvas {
+    @apply min-h-screen
+  }
 }
