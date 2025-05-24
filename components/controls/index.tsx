@@ -7,7 +7,7 @@ export default function Controls({
   className?: string
 }) {
   return (
-    <aside className={cn('min-h-screen border-r shadow-inner', className)}>
+    <aside className={cn('min-h-screen border-r border-border/40', className)}>
       Controls
     </aside>
   )

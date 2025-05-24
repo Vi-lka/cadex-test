@@ -145,7 +145,7 @@ export default function CameraControls() {
     ).normalize()
 
     // Update camera position
-    if (cameraDistance.current > 2 && cameraDistance.current < 50) {
+    if (cameraDistance.current > 1 && cameraDistance.current < 500) {
       cameraPosition.current.x += direction.x * zoomDelta
       cameraPosition.current.y += direction.y * zoomDelta
       cameraPosition.current.z += direction.z * zoomDelta
