@@ -37,6 +37,7 @@ export default function PrimitiveComponent({ primitive, isSelected, onClick }: P
     }
   }, [hovered])
 
+  // Rotate selected primitive
   useFrame((_, delta) => {
     if (meshRef.current && isSelected) {
       // Rotation animation for selected primitive

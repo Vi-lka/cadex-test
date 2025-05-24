@@ -2,6 +2,11 @@ import { useFrame, useThree } from '@react-three/fiber'
 import React from 'react'
 import * as THREE from "three"
 
+// WARNING!
+// I do not use this component, I tried to make it so as not to use Drei OrbitControls, 
+// but there is a problem with the touches, panning and zoom work crookedly on the phone, 
+// there is no time left for fix this
+
 type TouchModeT = "rotate" | "pan" | "zoom"
 
 const DAMPING_FACTOR = 0.95 // Damping factor (bigger = more inertia), must be lower than 1

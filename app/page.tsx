@@ -2,7 +2,10 @@
 
 import React from "react";
 import ControlBar, { ControlButtons, PrimitivesList } from "@/components/control-bar";
-import { OrbitControls, Stats } from "@react-three/drei";
+import { 
+  OrbitControls, 
+  // Stats 
+} from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { type PrimitiveGroup } from "@/types";
 import PrimitiveComponent from "@/components/primitives/primitive-component";
@@ -13,9 +16,6 @@ export default function Home() {
   const [selectedPrimitiveId, setSelectedPrimitiveId] = React.useState<string | null>(null)
 
   const allPrimitives = primitiveGroups.flatMap((group) => group.primitives)
-
-  console.log(allPrimitives)
-  console.log(selectedPrimitiveId)
 
   const clearScene = () => {
     setPrimitiveGroups([])
@@ -36,6 +36,7 @@ export default function Home() {
           onClearScene={clearScene}
         />
       </ControlBar>
+
       <Canvas 
         fallback={<div>Sorry no WebGL supported!</div>}
         camera={{ position: [5, 5, 5], fov: 50 }}
@@ -61,7 +62,7 @@ export default function Home() {
           />
         ))}
       </Canvas>
-      <Stats showPanel={0} className=""/>
+      {/* <Stats showPanel={0} className=""/> */}
     </div>
   );
 }

@@ -6,7 +6,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Generate random color
 export function generateRandomColor(): string {
   const colors = [
     "#ef4444",
@@ -41,7 +40,6 @@ export function generateFaceColors(type: "box" | "pyramid"): string[] {
   }
 }
 
-// Generate random position
 export function generateRandomPosition(): [number, number, number] {
   return [
     (Math.random() - 0.5) * 10, // x: -5 to 5
@@ -50,7 +48,6 @@ export function generateRandomPosition(): [number, number, number] {
   ]
 }
 
-// Generate primitive group from form data
 export function generatePrimitiveGroup(formData: PrimitiveFormData): PrimitiveGroup {
   const groupId = `group-${Date.now()}`
   const primitives: Primitive[] = []
