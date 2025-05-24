@@ -135,7 +135,7 @@ export default function CameraControls() {
     cameraDistance.current += -zoomDelta
 
     // Limit zoom distance
-    cameraDistance.current = Math.max(2, Math.min(50, cameraDistance.current))
+    cameraDistance.current = Math.max(1, Math.min(500, cameraDistance.current))
 
     // Get current direction vector from camera to orbit center
     const direction = new THREE.Vector3(
@@ -304,9 +304,9 @@ export default function CameraControls() {
 
         // Handle pinch zoom
         const distanceDelta = distance - previousTouchDistance
-        if (Math.abs(distanceDelta) > 1) {
+        if (Math.abs(distanceDelta) > 10) {
           // Zoom effect (like mouse wheel)
-          handleZoom(distanceDelta)
+          handleZoom(-distanceDelta)
 
           // Update touch mode to zoom
           setTouchMode("zoom")
