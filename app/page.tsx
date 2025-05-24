@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import ControlBar, { ControlButtons } from "@/components/control-bar";
+import ControlBar, { ControlButtons, PrimitivesList } from "@/components/control-bar";
 import { OrbitControls, Stats } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { type PrimitiveGroup } from "@/types";
@@ -24,6 +24,11 @@ export default function Home() {
   return (
     <div className="min-h-screen flex">
       <ControlBar className="w-1/3 md:w-1/4">
+        <PrimitivesList 
+          primitives={allPrimitives} 
+          selectedPrimitiveId={selectedPrimitiveId} 
+          onPrimitiveSelect={setSelectedPrimitiveId} 
+        />
         <ControlButtons 
           primitivesLength={allPrimitives.length}
           onAddPrimitiveGroup={(group) => setPrimitiveGroups((prev) => [...prev, group])}
