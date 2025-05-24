@@ -9,7 +9,7 @@ export interface Primitive {
     height: number
     depth: number
   }
-  color: string
+  faceColors: string[]
   groupId: string
 }
 

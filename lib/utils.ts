@@ -6,6 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+// Generate random color
 export function generateRandomColor(): string {
   const colors = [
     "#ef4444",
@@ -29,6 +30,18 @@ export function generateRandomColor(): string {
   return colors[Math.floor(Math.random() * colors.length)]
 }
 
+// Generate random colors for each face of a primitive
+export function generateFaceColors(type: "box" | "pyramid"): string[] {
+  if (type === "box") {
+    // Box has 6 faces
+    return Array.from({ length: 6 }, () => generateRandomColor())
+  } else {
+    // Pyramid (cone) has 5 faces (4 sides + 1 base)
+    return Array.from({ length: 5 }, () => generateRandomColor())
+  }
+}
+
+// Generate random position
 export function generateRandomPosition(): [number, number, number] {
   return [
     (Math.random() - 0.5) * 10, // x: -5 to 5
@@ -37,11 +50,13 @@ export function generateRandomPosition(): [number, number, number] {
   ]
 }
 
+// Generate primitive group from form data
 export function generatePrimitiveGroup(formData: PrimitiveFormData): PrimitiveGroup {
   const groupId = `group-${Date.now()}`
   const primitives: Primitive[] = []
 
   for (let i = 0; i < formData.count; i++) {
+    const faceColors = generateFaceColors(formData.type)
     const primitive: Primitive = {
       id: `${groupId}-primitive-${i}`,
       type: formData.type,
@@ -51,7 +66,7 @@ export function generatePrimitiveGroup(formData: PrimitiveFormData): PrimitiveGr
         height: formData.height,
         depth: formData.depth,
       },
-      color: generateRandomColor(),
+      faceColors: faceColors,
       groupId,
     }
     primitives.push(primitive)
