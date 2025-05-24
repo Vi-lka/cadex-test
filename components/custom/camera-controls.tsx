@@ -215,7 +215,7 @@ export default function CameraControls() {
     }
   }, [isDragging, isRightDragging, previousMousePosition, handleOrbitRotation, handlePaning, handleZoom])
 
-  // ===== TOUCH EVENT HANDLERS ===== //
+  // ===== TOUCH EVENT HANDLERS ===== // These are bad, need something better for touch (((
   React.useEffect(() => {
 
     const handleTouchStart = (e: TouchEvent) => {
