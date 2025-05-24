@@ -5,6 +5,7 @@ import ControlBar, { ControlButtons, PrimitivesList } from "@/components/control
 import { OrbitControls, Stats } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { type PrimitiveGroup } from "@/types";
+import PrimitiveComponent from "@/components/primitives/primitive-component";
 
 export default function Home() {
   // In real big project I could use zustand if want "Redux" type of state managment, or Jotai for atomic state managment (depends on the architecture and use case)
@@ -48,6 +49,16 @@ export default function Home() {
 
         {/* Camera controls */}
         <OrbitControls />
+
+        {/* Render all primitives */}
+        {allPrimitives.map((primitive) => (
+          <PrimitiveComponent
+            key={primitive.id}
+            primitive={primitive}
+            isSelected={selectedPrimitiveId === primitive.id}
+            onClick={() => setSelectedPrimitiveId(primitive.id)}
+          />
+        ))}
       </Canvas>
       <Stats showPanel={0} className=""/>
     </div>
