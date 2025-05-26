@@ -1,7 +1,9 @@
 import React from 'react'
 import type { Primitive } from '@/types'
-import * as THREE from "three"
 import { useFrame } from '@react-three/fiber'
+import BoxGeometry from '@/lib/box-geometry'
+import PyramidGeometry from '@/lib/pyramid-geometry'
+import { type Mesh, MeshStandardMaterial } from 'three'
 
 interface PrimitiveComponentProps {
   primitive: Primitive
@@ -10,7 +12,7 @@ interface PrimitiveComponentProps {
 }
 
 export default function PrimitiveComponent({ primitive, isSelected, onClick }: PrimitiveComponentProps) {
-  const meshRef = React.useRef<THREE.Mesh>(null)
+  const meshRef = React.useRef<Mesh>(null)
   const originalRotationY = React.useRef<number>(0)
 
   const [hovered, setHovered] = React.useState(false)
@@ -80,7 +82,7 @@ export default function PrimitiveComponent({ primitive, isSelected, onClick }: P
 
 function createBoxWithMaterialGroups(primitive: Primitive, isSelected: boolean) {
   const { width, height, depth } = primitive.parameters
-  const geometry = new THREE.BoxGeometry(width, height, depth)
+  const geometry = new BoxGeometry(width, height, depth);
 
   // Clear existing groups
   geometry.clearGroups()
@@ -96,7 +98,7 @@ function createBoxWithMaterialGroups(primitive: Primitive, isSelected: boolean) 
 
   const materials = primitive.faceColors.map(
     (color) =>
-      new THREE.MeshStandardMaterial({
+      new MeshStandardMaterial({
         color: isSelected ? "#ffffff" : color,
         emissive: isSelected ? color : "#000000",
         emissiveIntensity: isSelected ? 0.3 : 0,
@@ -110,11 +112,7 @@ function createBoxWithMaterialGroups(primitive: Primitive, isSelected: boolean) 
 
 function createPyramidWithMaterialGroups(primitive: Primitive, isSelected: boolean) {
   const { width, height, depth } = primitive.parameters
-  const geometry = new THREE.ConeGeometry(
-    Math.max(width, depth) / 2,
-    height,
-    4, // 4 segments for pyramid shape
-  )
+  const geometry = new PyramidGeometry(width, height, depth);
 
   // Clear existing groups
   geometry.clearGroups()
@@ -125,11 +123,11 @@ function createPyramidWithMaterialGroups(primitive: Primitive, isSelected: boole
   geometry.addGroup(3, 3, 1)
   geometry.addGroup(6, 3, 2)
   geometry.addGroup(9, 3, 3)
-  geometry.addGroup(12, 12, 4)
+  geometry.addGroup(12, 6, 4)
 
   const materials = primitive.faceColors.map(
     (color) =>
-      new THREE.MeshStandardMaterial({
+      new MeshStandardMaterial({
         color: isSelected ? "#ffffff" : color,
         emissive: isSelected ? color : "#000000",
         emissiveIntensity: isSelected ? 0.3 : 0,

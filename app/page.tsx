@@ -44,8 +44,7 @@ export default function Home() {
       >
         {/* Light and Helpers */}
         <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <directionalLight position={[-10, 10, 5]} intensity={0.5} />
+        <directionalLight position={[-10, 20, 5]} intensity={0.5} />
         <gridHelper args={[20, 20]} />
         <axesHelper args={[5]} />
 
